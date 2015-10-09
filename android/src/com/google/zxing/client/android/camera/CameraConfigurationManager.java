@@ -64,9 +64,9 @@ public final class CameraConfigurationManager {
       width = height;
       height = temp;
     }
-    screenResolution = new Point(width, height);
+    screenResolution = new Point(height, width);
     Log.i(TAG, "Screen resolution: " + screenResolution);
-    cameraResolution = findBestPreviewSizeValue(parameters, screenResolution, false);
+    cameraResolution = findBestPreviewSizeValue(parameters, new Point(width, height), false);
     Log.i(TAG, "Camera resolution: " + cameraResolution);
   }
 
@@ -89,6 +89,7 @@ public final class CameraConfigurationManager {
     }
 
     parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+    camera.setDisplayOrientation(90);
     camera.setParameters(parameters);
   }
 
